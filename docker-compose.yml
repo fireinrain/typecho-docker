@@ -1,0 +1,48 @@
+version: "3.7"
+
+services:
+  typecho-nginx:
+    image: nginx:1.23-alpine
+    ports:
+      - "18080:80"
+    restart: always
+    volumes:
+      - ./www/build/typecho:/var/www/html
+      - ./nginx:/etc/nginx/conf.d
+    depends_on:
+      - typecho-php
+    networks:
+      - typecho-web
+
+  typecho-php:
+    build:
+      context: ./php
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "19000:9000"
+    volumes:
+      - ./www/build/typecho:/var/www/html
+    environment:
+      - TZ=Asia/Shanghai
+    depends_on:
+      - typecho-mysql
+    networks:
+      - typecho-web
+
+  typecho-mysql:
+    image: mysql:5.7
+    restart: always
+    ports:
+      - "13306:3306"
+    env_file:
+      - mysql/mysql.env
+    volumes:
+      - ./mysql/data:/var/lib/mysql
+      - ./mysql/logs:/var/log/mysql
+      - ./mysql/conf:/etc/mysql/conf.d
+    networks:
+      - typecho-web
+
+networks:
+  typecho-web:
