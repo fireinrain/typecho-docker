@@ -13,7 +13,7 @@ docker(mysql5.7,php7.4,nginx1.3)
 3. `git clone https://github.com/fireinrain/typecho-docker`
 4. 修改mysql.env 中的值为自定义值(密码最好复杂一点), 修改docker-compose.yml nginx的ssl证书映射路径
 5. 启动容器`docker-compose -f docker-compose.yml up -d`
-6. 访问地址 http://服务器ip:18080，进入到初始化页面
+6. 访问地址 https://你的域名/install.php，进入到初始化页面
 7. 按照初始化的指引，完成步骤，最后将生成的代码拷贝到指定的文件夹,然后完成安装
 
 ```
@@ -22,7 +22,7 @@ docker(mysql5.7,php7.4,nginx1.3)
 最好是在主机上安装nginx，然后申请`泛域名证书`，保存到服务器,
 在DNS解析中，添加我们域名到ip的解析记录，然后再nginx的配置文件中
 
-添加按照域名分流设置。
+添加按照域名分流设置。需要注意的是nginx转发时 我们也需要使用https
 
 ```
 
