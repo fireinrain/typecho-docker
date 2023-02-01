@@ -11,8 +11,8 @@ services:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
       - ./nginx/logs:/etc/nginx/logs/
       # 根据自己证书的位置 挂载ssl证书
-      - /nginxweb/cert/fullchain.cer:/opt/fullchain.cer
-      - /nginxweb/cert/private.key:/opt/private.key
+      - /xx/xx/cert.cer:/opt/cert.cer
+      - /xx/xx/private.key:/opt/private.key
     depends_on:
       - typecho-php
     networks:
