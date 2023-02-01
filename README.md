@@ -13,6 +13,8 @@ docker(mysql5.7,php7.4,nginx1.3)
 3. `git clone https://github.com/fireinrain/typecho-docker`
 4. 修改mysql.env 中的值为自定义值(密码最好复杂一点), 修改docker-compose.yml nginx的ssl证书映射路径
 5. 启动容器`docker-compose -f docker-compose.yml up -d`
+6. 修改网站目录为可写状态 chmod -R 777 www
+7. 重新启动docker 容器 `docker-compose -f docker-compose.yml restart`
 6. 访问地址 https://你的域名/install.php，进入到初始化页面
 7. 按照初始化的指引，完成步骤，最后将生成的代码拷贝到指定的文件夹,然后完成安装
 
